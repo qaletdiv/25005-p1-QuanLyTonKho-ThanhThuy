@@ -8,13 +8,18 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="login-form">
-        <label for="user-id">User ID</label>
-        <input type="text" id="user-id">
-        <label for="password">Password</label>
-        <input type="password" id="user-password">
-
-    </div>
+    <h1>Đăng nhập</h1>
+    <form class="login-form">
+        <div class="user-id">
+            <label for="user-id">User ID</label>
+            <input type="text" id="user-id" placeholder="Nhập User ID">
+        </div>
+        <div class="user-password">
+            <label for="user-password">Password</label>
+            <input type="password" id="user-password" placeholder="Nhập password">
+        </div>
+        <button type="submit">Đăng nhập</button>
+    </form>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
 </body>
