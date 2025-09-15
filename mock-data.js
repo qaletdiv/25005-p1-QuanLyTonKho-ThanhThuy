@@ -1,0 +1,1 @@
+localStorage.setItem("account1",JSON.stringify({userId:'nhanvien1',userPassword:'nhanvien001'}));
