@@ -1,5 +1,9 @@
 $(function(){
-    const account1 = JSON.parse(localStorage.getItem("account1"));
+    let account = JSON.parse(localStorage.getItem("account1"));
+    if(account===null){
+        localStorage.setItem('account1',JSON.stringify(account1));
+        account=JSON.parse(localStorage.getItem("account1"));
+    }
     $(".login-form").on("submit",function(event){
         event.preventDefault();
         const userId=$("#user-id").val().trim();
@@ -8,8 +12,9 @@ $(function(){
             alert('vui lòng nhập user ID,password');
             return;
         }
-        if(userId===account1.userId && userPassword===account1.userPassword){
-            // code chuyển sang màn hình chính, màn hình có chứa menu danh sách tồn kho và các menu danh sách khác??⇒ không biết viết code , ko biết cú pháp
+        if(userId===account.userId && userPassword===account.userPassword){
+            // code chuyển sang màn hình chính, màn hình có chứa menu danh sách tồn kho và các menu danh sách khác
+            window.location.href="orders-list.html"
         }else{
             alert("userId hoặc password không đúng");
             return;

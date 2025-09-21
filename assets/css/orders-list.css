@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.sidebar-menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100%;
+    background-color: green;
+    padding-top: 50px;
+}
+#menu-search{
+    width: 100px;
+}
+.sidebar-menu ul{
+    list-style: none;
+}
+
+.sidebar-menu ul li a {
+    display:flex;
+    position: relative;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 12px 20px;
+    align-items: center;
+}
+.sidebar-menu ul li a span::before {
+    content: "";
+    display: block;
+    width: 14px;              
+    height: 14px;
+    border: 2px solid white;  
+    border-radius: 50%; 
+    margin-right: 10px;        
+}
+.sidebar-menu ul li a:hover{
+    background-color: #34495e;
+}
+.sidebar-menu ul li a.active {
+    background-color: #34495e;
+}
+
+.topbar{
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    height: 50px;
+    background-color: green;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.user-btn{
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.user-dropdown-content{
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.user-dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.container {
+    margin-left: 200px;
+    padding: 70px 20px 20px 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.search {
+    margin-bottom: 20px;
+}
+
+.search input {
+    padding: 6px 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search button {
+    padding: 6px 12px;
+    margin-left: 5px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search button:hover {
+    background-color: #2980b9;
+}
+
+.PO-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.PO-table th,
+.PO-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.PO-table th {
+    background-color: #949da2;
+    color: #fff;
+}
+
+.PO-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.PO-table tr:hover {
+    background-color: #f1f1f1;
+} 
