@@ -30,52 +30,36 @@
 
     <!-- nội dung chính -->
     <div class="container">
-        <h1>Danh sách Đơn mua hàng</h1>
-        <div class="search">
-            <input type="text" placeholder="nhập từ khóa tìm kiếm">
-            <button>tìm kiếm</button>
-        
-        </div>
-        <table class="PO-table">
-            <thead>
-                <tr>
-                    <th>Mã đơn hàng</th>
-                    <th>Tên NCC</th>
-                    <th>Ngày mua hàng</th>
-                    <th>Nhân viên phụ trách</th>
-                    <th>Mã sp</th>
-                    <th>Số lượng mua</th>
-                    <th>Đơn giá</th>
-                    <th>Tổng tiền</th>
-                    <th>Trạng thái</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>nháp</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>nháp</td>
-                </tr>
+    <h1>Danh sách Đơn mua hàng</h1>
 
-            </tbody>
-        </table>
+    <div class="search">
+        <input type="text" placeholder="Nhập mã đơn hàng hoặc tên NCC">
+        <button id="btn-search">Tìm kiếm</button>
+        <button id="btn-create">Tạo mới</button>
     </div>
+    <table class="PO-table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã đơn hàng</th>
+                <th>Tên NCC</th>
+                <th>Ngày mua hàng</th>
+                <th>Nhân viên phụ trách</th>
+                <th>Mã sp</th>
+                <th>Số lượng mua</th>
+                <th>Đơn giá</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody id="orders-tbody">
+
+        </tbody>
+    </table>
+</div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+    <script src="assets/data/mock-data.js"></script>
+    <script src="assets/js/orders-list.js"></script>
 </body>
 </html>
