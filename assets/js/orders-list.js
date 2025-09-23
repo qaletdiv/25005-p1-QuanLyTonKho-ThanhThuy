@@ -6,6 +6,8 @@ $(function(){
     }
     console.log(orders);
     let tbody=$('#orders-tbody');
+    function renderOrdersList(orders){
+        tbody.empty();
         orders.forEach((element,index)=>{
             let row=`
                 <tr>
@@ -21,6 +23,19 @@ $(function(){
                     <td>${element.status}</td>
                 </tr>`;
             tbody.append(row);
-        })
-            
+        });
+    }
+    renderOrdersList(orders);
+
+    $('#btn-create').on('click',function(){
+        window.open("order-detail.html","_blank");
+    });
+    $('#btn-search').on('click',function(){
+        let keyword=$('#search-input').val().trim().toLowerCase();
+        let result=orders.filter(element=>
+            element.orderNo.toLowerCase().includes(keyword) ||
+            element.vendorName.toLowerCase().includes(keyword)
+        );
+        renderOrdersList(result);
+    });
 });
