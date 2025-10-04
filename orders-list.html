@@ -7,28 +7,28 @@
     <link rel="stylesheet" href="assets/css/orders-list.css">
 </head>
 <body>
-    <!-- thanh menu bar bên trái -->
-    <div class="sidebar-menu">
-        <input type="text" id ="menu-search" placeholder="🔍search">
+    <button class="toggle-btn">☰ Menu</button>
+
+    <div class="sidebar-wrap">
+        <div class="sidebar-menu">
         <ul>
-            <li><a href=""><span id="menu-A3">Đơn mua hàng</span></a></li>
-            <li><a href=""><span id="menu-A4">Sản phẩm</span></a></li>
-            <li><a href=""><span id="menu-A5">Nhà cung cấp</span></a></li>
-            <li><a href=""><span id="menu-A6">Tồn kho</span></a></li>
+            <li><a href="#"><span>Đơn mua hàng</span></a></li>
+            <li><a href="#"><span>Sản phẩm</span></a></li>
+            <li><a href="#"><span>Nhà cung cấp</span></a></li>
+            <li><a href="#"><span>Tồn kho</span></a></li>
         </ul>
+        </div>
     </div>
-    <!-- nút user bên phải trên góc màn hình -->
+    
     <div class="topbar">
         <div class="user-dropdown">
             <button class="user-btn">User▼</button>
             <div class="user-dropdown-content">
-                <a href="">Thay đổi mật khẩu</a>
-                <a href="">Đăng xuất</a>
+                <a href="#">Thay đổi mật khẩu</a>
+                <a href="#" id="logout">Đăng xuất</a>
             </div>
         </div>
     </div>
-
-    <!-- nội dung chính -->
     <div class="container">
     <h1>Danh sách Đơn mua hàng</h1>
 
@@ -46,6 +46,7 @@
                 <th>Ngày mua hàng</th>
                 <th>Nhân viên phụ trách</th>
                 <th>Mã sp</th>
+                <th>Tên SP</th>
                 <th>Số lượng mua</th>
                 <th>Đơn giá</th>
                 <th>Tổng tiền</th>

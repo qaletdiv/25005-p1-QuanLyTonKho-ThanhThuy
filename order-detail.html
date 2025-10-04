@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết đơn hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/order-detail.css">
+</head>
+<body>
+    <button class="toggle-btn">☰ Menu</button>
+
+    <div class="sidebar-wrap">
+        <div class="sidebar-menu">
+        <ul>
+            <li><a href="#"><span>Đơn mua hàng</span></a></li>
+            <li><a href="#"><span>Sản phẩm</span></a></li>
+            <li><a href="#"><span>Nhà cung cấp</span></a></li>
+            <li><a href="#"><span>Tồn kho</span></a></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="topbar">
+        <div class="user-dropdown">
+            <button class="user-btn">User▼</button>
+            <div class="user-dropdown-content">
+                <a href="#">Thay đổi mật khẩu</a>
+                <a href="#" id="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class = "button-group">
+            <div>
+                <a href="orders-list.html" class="btn">Quay về</a>
+            </div>
+            <div>
+                <button>xác nhận nhập kho</button>
+                <button>xác nhận đơn hàng</button>
+                <button>lưu lại</button>
+            </div>
+        </div>
+        <h2>Thông tin đơn hàng</h2>
+
+        <form id="mainForm">
+            <div class="data_area clearfix">
+                <div class="data">
+                    <label for="vendor">Nhà cung cấp<span class="required">*</span></label>
+                    <input list="vendor-list" id="vendor" name="vendor" required>
+                    <datalist id="vendor-list">
+                        <option value="Công ty A"></option>
+                        <option value="Công ty B"></option>
+                        <option value="Công ty C"></option>
+                    </datalist>
+                    
+                    <label for="PO-person">NV phụ trách<span class="required">*</span></label>
+                    <input type="text" id ="PO-person" name="PO-person" required><br>
+                    <label for="PO-date">Ngày mua hàng<span class="required">*</span></label>
+                    <input type="text" id = "PO-date" name="date1" placeholder="Chọn ngày" required>
+                    <label>Tổng tiền</label>
+                    <input type="text" name="net1" readonly>
+                </div>
+
+                <div class="note">
+                    <label>Phụ chú</label>
+                    <textarea name="note1"></textarea>
+                </div>
+            </div>
+        </form>
+
+        <h2>Thông tin chi tiết</h2>
+        <table class="PO-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>STT</th>
+                    <th>Mã SP</th>
+                    <th>Tên SP</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button type="button" id="addRow">Thêm dòng</button>
+        <button type="button" id="deleteRow">Xóa dòng</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+    <script src="assets/data/mock-data.js"></script>
+    <script src="assets/js/common.js"></script> 
+    <script src="assets/js/order-detail.js"></script>
+
+</body>
+</html>
