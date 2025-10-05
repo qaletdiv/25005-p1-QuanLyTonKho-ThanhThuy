@@ -10,7 +10,7 @@
     left: 20px;
     z-index: 1000;
     padding: 10px 15px;
-    background: #333;
+    background:green;
     color: white;
     cursor: pointer;
     border: none;
@@ -72,14 +72,14 @@
     background-color: #34495e;
 }
 .topbar {
-    position: fixed;
+    position: fi;
     top: 0;
     left: 120px; 
     right: 0;
     height: 50px;
     background-color: green;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     color: #fff;
@@ -115,7 +115,7 @@
 .user-dropdown-content a:hover { background-color: #f1f1f1; }
 
 .container {
-    margin-left: 200px;
+    margin-left: 50px;
     padding: 70px 20px 20px 20px;
 }
 

@@ -4,7 +4,7 @@ $(function(){
         localStorage.setItem('account1',JSON.stringify(account1));
         account=JSON.parse(localStorage.getItem("account1"));
     }
-    $(".login-form").on("submit",function(event){
+    $(".login").on("submit",function(event){
         event.preventDefault();
         const userId=$("#user-id").val().trim();
         const userPassword=$("#user-password").val().trim();
