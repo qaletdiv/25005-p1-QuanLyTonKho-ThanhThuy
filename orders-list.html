@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách đơn mua hàng</title>
+    
+    <!-- CSS riêng -->
     <link rel="stylesheet" href="assets/css/orders-list.css">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+
     <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
 </head>
 <body>
+    <!-- Sidebar -->
     <div class="sidebar-wrap">
         <div class="sidebar-menu">
-        <ul>
-            <li><a href="#"><span>Đơn mua hàng</span></a></li>
-            <li><a href="#"><span>Sản phẩm</span></a></li>
-            <li><a href="#"><span>Nhà cung cấp</span></a></li>
-            <li><a href="#"><span>Tồn kho</span></a></li>
-        </ul>
+            <ul>
+                <li><a href="#"><span>Đơn mua hàng</span></a></li>
+                <li><a href="#"><span>Sản phẩm</span></a></li>
+                <li><a href="#"><span>Nhà cung cấp</span></a></li>
+                <li><a href="#"><span>Tồn kho</span></a></li>
+            </ul>
         </div>
     </div>
-    
+
+    <!-- Topbar -->
     <div class="topbar">
-        <div class = "menu-btn">
+        <div class="menu-btn">
             <button class="toggle-btn">☰ Menu</button>
         </div>
         <div class="user-dropdown">
@@ -31,34 +40,41 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Container -->
     <div class="container">
-    <h1>Danh sách Đơn mua hàng</h1>
+        <h1>Danh sách Đơn mua hàng</h1>
 
-    <div class="search">
-        <input type="text" placeholder="Nhập mã đơn hàng hoặc tên NCC" id="search-input">
-        <button id="btn-search">Tìm kiếm</button>
-        <button id="btn-create">Tạo mới</button>
+        <div class="search">
+            <input type="text" placeholder="Nhập mã đơn hàng hoặc tên NCC" id="search-input">
+            <button id="btn-search">Tìm kiếm</button>
+            <button id="btn-create">Tạo mới</button>
+        </div>
+
+        <div class="PO-table-container">
+            <table class="PO-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Tên NCC</th>
+                        <th>Ngày mua hàng</th>
+                        <th>Nhân viên phụ trách</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-tbody"></tbody>
+            </table>
+        </div>
     </div>
-    <table class="PO-table">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Mã đơn hàng</th>
-                <th>Tên NCC</th>
-                <th>Ngày mua hàng</th>
-                <th>Nhân viên phụ trách</th>
-                <th>Tổng tiền</th>
-                <th>Trạng thái</th>
-            </tr>
-        </thead>
-        <tbody id="orders-tbody">
 
-        </tbody>
-    </table>
-</div>
+    <!-- JS Libraries -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+    <!-- File data & JS riêng -->
     <script src="assets/data/mock-data.js"></script>
     <script src="assets/js/orders-list.js"></script>
 </body>

@@ -155,7 +155,7 @@ h1 {
 
 .product-table th:first-child,
 .product-table td:first-child {
-    width: 40px;   /* hoặc 30px, tùy ý */
+    width: 40px;  
     text-align: center;
 }
 

@@ -1,11 +1,8 @@
 $(function() {
-    // lấy dữ liệu từ localstorage khi ULR chứa orderNo dc goi
-    localStorage.setItem("orders", JSON.stringify(orders1));
-
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const orderNo = urlParams.get("orderNo"); 
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const orders = JSON.parse(localStorage.getItem("orders")) ;
     const order = orders.find(o => o.orderNo === orderNo);
 
     if (order) {
@@ -16,23 +13,23 @@ $(function() {
 
         const tbody = $(".PO-table tbody");
         tbody.empty();
-        tbody.append(`
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>1</td>
-                <td>${order.item_CD}</td>
-                <td>${order.item_name || ""}</td>
-                <td>${order.quantity}</td>
-                <td>${order.price}</td>
-                <td>${order.totalAmount}</td>
-            </tr>
-        `);
+        order.orderProducts.forEach((p,index)=>{
+            tbody.append(`
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>${index + 1}</td>
+                    <td>${p.item_CD}</td>
+                    <td>${p.item_name}</td>
+                    <td>${p.quantity}</td>
+                    <td>${p.price || ""}</td>
+                    <td>${p.quantity * (p.price || 0)}</td>
+                </tr>
+            `);
+        });
     }
 
-
-
     //khi click nút addRow thì thêm dòng mới
-    let rowCount = 0;
+    let rowCount = order ? order.orderProducts.length :0 ;
     $('#addRow').on('click',function(){
         rowCount++;
         const newRow =`
