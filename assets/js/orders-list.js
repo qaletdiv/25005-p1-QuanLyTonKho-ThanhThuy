@@ -1,26 +1,39 @@
 $(function(){
-    function render(data){
-        let tbody = $("#orders-tbody");
-        tbody.empty();
-        data.forEach((o,index)=>{
-            tbody.append(`
-                <tr dataOrderNo="${o.orderNo}">
-                    <td>${index+1}</td>
-                    <td>${o.orderNo}</td>
-                    <td>${o.vendorName}</td>
-                    <td>${o.orderDate}</td>
-                    <td>${o.handler}</td>
-                    <td>${o.totalAmount.toLocaleString()} VNĐ</td>
-                    <td>${o.status}</td>
-                </tr>
-            `);
+    function render (data){
+        if ($.fn.DataTable.isDataTable('#PO-table')) {
+            $('#PO-table').DataTable().clear().destroy();
+        }
+
+        $('#PO-table').DataTable({
+            data:data,
+            columns:[
+                {data:null,title:'STT'},
+                {data:'orderNo',title:'Mã đơn hàng'},
+                {data:'vendorName',title:'Tên NCC'},
+                {data:'orderDate',title:'Ngày mua hàng'},
+                {data:'handler',title:'Nhân viên phụ trách'},
+                {data:'totalAmount',title:'Tổng tiền'},
+                {data:'status',title:'Trạng thái'}
+            ],
+            columnDefs:[
+                {
+                    targets:0,
+                    render:function(data,type,row,meta){
+                        return meta.row + 1;
+                    }
+                },
+            ],
+            createdRow:function(row,rowData,dataINdex){
+                $(row).attr('data-order-no',rowData.orderNo)
+            },
+            searching:false
         });
     }
 
     if(!localStorage.getItem("orders")){ 
         localStorage.setItem("orders", JSON.stringify(orders))}; 
         let ordersData = JSON.parse(localStorage.getItem("orders"));
-    render(orders);
+    render(ordersData);
 
     // Nút tạo mới
     $("#btn-create").on("click", function(){
@@ -30,15 +43,21 @@ $(function(){
     // Nút tìm kiếm
     $("#btn-search").on("click", function(){
         let keyword = $("#search-input").val().trim().toLowerCase();
-        let filtered = orders.filter(o =>
+        let filtered = ordersData.filter(o =>
             o.orderNo.toLowerCase().includes(keyword) || o.vendorName.toLowerCase().includes(keyword)
         );
         render(filtered);
     });
 
-    $('#orders-tbody').on('click','tr',function(){
-        let orderNo = $(this).attr('dataOrderNo');
+    $('#PO-table').on('click', 'tbody tr', function () {
+        let orderNo = $(this).data('order-no');
         window.location.href = `order-detail.html?orderNo=${orderNo}`;
     });
+
+    // nút ẩn hiện menu js
+    $(".toggle-btn").click(function(){
+        $(".sidebar-wrap").slideToggle(300); 
+    });
+    
 
 });

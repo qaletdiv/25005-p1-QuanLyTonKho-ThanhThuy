@@ -180,12 +180,13 @@ textarea.fld { height: 120px; resize: vertical; }
 
 .PO-table th, .PO-table td {
     border: 1px solid #ccc;
-    padding: 5px;
+    padding: 0;
     text-align: center;
 }
 
 .PO-table td {
     cursor: text;
+    height: 35px;
 }
 
 .PO-table th {
