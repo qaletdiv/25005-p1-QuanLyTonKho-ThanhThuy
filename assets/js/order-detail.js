@@ -137,4 +137,16 @@ function updateOrderData (){
     $("#PO-date").datepicker({
         dateFormat: "dd/mm/yy"
     });
+
+    // dropdown khi click nút User
+    $(".user-btn").click(function(event){
+        event.stopPropagation(); 
+        $(".user-dropdown-content").toggle();
+    });
+
+    $(document).click(function(){
+        $(".user-dropdown-content").hide();
+    });
+
+
 });

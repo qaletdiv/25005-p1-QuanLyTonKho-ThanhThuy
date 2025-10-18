@@ -62,6 +62,17 @@ $(function(){
     $(".toggle-btn").click(function(){
         $(".sidebar-wrap").slideToggle(300); 
     });
+
+
+    // dropdown khi click nút User
+    $(".user-btn").click(function(event){
+        event.stopPropagation(); 
+        $(".user-dropdown-content").toggle();
+    });
+
+    $(document).click(function(){
+        $(".user-dropdown-content").hide();
+    });
     
 
 });

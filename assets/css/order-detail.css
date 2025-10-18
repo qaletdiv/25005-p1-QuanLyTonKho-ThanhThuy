@@ -259,3 +259,13 @@ textarea.fld { height: 120px; resize: vertical; }
 #PO-table input[type=number] {
     -moz-appearance: textfield;
 }
+#saveBtn{
+    background-color: rgb(40, 40, 136);
+}
+#confirmStockBtn{
+    background-color: rgb(7, 164, 226);
+}
+
+#confirmOrderBtn{
+    background-color: rgb(157, 29, 110);
+}
