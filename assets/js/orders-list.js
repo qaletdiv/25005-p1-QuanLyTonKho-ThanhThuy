@@ -1,10 +1,11 @@
 $(function(){
+    let table;
     function render (data){
         if ($.fn.DataTable.isDataTable('#PO-table')) {
             $('#PO-table').DataTable().clear().destroy();
         }
 
-        $('#PO-table').DataTable({
+        table=$('#PO-table').DataTable({
             data:data,
             columns:[
                 {data:null,title:'STT'},
@@ -23,10 +24,13 @@ $(function(){
                     }
                 },
             ],
-            createdRow:function(row,rowData,dataINdex){
+            createdRow:function(row,rowData,dataIndex){
                 $(row).attr('data-order-no',rowData.orderNo)
             },
             searching:false
+        });
+        table.on('draw.dt',function(){
+            table.column(0,{search:'applied',order:'applied'}).nodes().each(function(cell,i){cell.innerHTML=i+1});
         });
     }
 
