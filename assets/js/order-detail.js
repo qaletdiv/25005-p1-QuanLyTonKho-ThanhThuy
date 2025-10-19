@@ -2,6 +2,7 @@ $(function() {
 const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const orderNo = urlParams.get("orderNo"); 
+    const mode = urlParams.get("mode");
     const orders = JSON.parse(localStorage.getItem("orders")) || [] ;
     const order = orders.find(o => o.orderNo === orderNo);
 
@@ -67,6 +68,41 @@ function updateOrderData (){
         
         // $('#PO-table tbody').html('<tr><td style="text-align:center;">Không tìm thấy đơn hàng</td></tr>');
     }
+  // ấn nút mở trang tại sidemenu thì mở màn hình có sẵn bảng ở dạng tạo mới để user nhập liệu
+    if(mode === "new"){
+        $('#vendor').val('');
+        $('#PO-person').val('');
+        $('#PO-date').val('');
+        $("input[name='net1']").val('');
+        $("textarea[name='note1']").val('');
+
+        const blankRows = [
+        { item_CD: '', item_name: '', quantity: '', price: '' },
+        { item_CD: '', item_name: '', quantity: '', price: '' },
+        { item_CD: '', item_name: '', quantity: '', price: '' }
+        ];
+
+        render(blankRows,true);
+        $('#addRow,#deleteRow,#saveBtn').show();
+    }
+
+    // user ấn nút tạo mới trong trang để tạo thêm đơn hàng mới mà ko cần ấn menu
+    $('#createNewBtn').on('click', function() {
+        $('#vendor').val('');
+        $('#PO-person').val('');
+        $('#PO-date').val('');
+        $("input[name='net1']").val('');
+        $("textarea[name='note1']").val('');
+
+        const blankRows = [
+        { item_CD: '', item_name: '', quantity: '', price: '' },
+        { item_CD: '', item_name: '', quantity: '', price: '' },
+        { item_CD: '', item_name: '', quantity: '', price: '' }
+        ];
+
+        render(blankRows,true);
+        $('#addRow,#deleteRow,#saveBtn').show();
+    });
 
     // bản nháp, user chỉnh sửa ô input
     $("#PO-table").on('input','.edit-input',function(){
@@ -125,8 +161,6 @@ function updateOrderData (){
         }
 
     });
-
-
 
     // nút ẩn hiện menu js
     $(".toggle-btn").click(function(){

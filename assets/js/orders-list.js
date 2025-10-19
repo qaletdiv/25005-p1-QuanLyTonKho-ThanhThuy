@@ -41,7 +41,7 @@ $(function(){
 
     // Nút tạo mới
     $("#btn-create").on("click", function(){
-        window.open("order-detail.html", "_blank");
+        window.open("order-detail.html?mode=new", "_blank");
     });
 
     // Nút tìm kiếm

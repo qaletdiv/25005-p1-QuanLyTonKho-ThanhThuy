@@ -269,3 +269,6 @@ textarea.fld { height: 120px; resize: vertical; }
 #confirmOrderBtn{
     background-color: rgb(157, 29, 110);
 }
+#createNewBtn{
+    background-color: gray;
+}
