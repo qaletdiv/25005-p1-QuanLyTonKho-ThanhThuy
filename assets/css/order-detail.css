@@ -78,9 +78,9 @@ body {
 }
 
 .topbar {
-    position: fi;
+    position: fixed;
+    left: 0;
     top: 0;
-    left: 120px; 
     right: 0;
     height: 50px;
     background-color: green;
@@ -89,8 +89,9 @@ body {
     align-items: center;
     padding: 0 20px;
     color: #fff;
-    z-index: 100;
+    z-index: 1000;
 }
+
 
 .user-dropdown { position: relative; }
 .user-btn{
@@ -118,19 +119,15 @@ body {
 }
 .user-dropdown-content a:hover { background-color: #f1f1f1; }
 
-.container {
-    margin-left: 50px;
-    padding: 70px 20px 20px 20px;
-}
-label{ 
+#mainForm label{ 
     font-weight: bold; 
     margin-bottom: 10px; 
     display: inline-block; 
-    width: 120px;
+    width: 100px;
 }
 .required { color: red; }
 
-select, input, textarea{
+#mainForm select, input, textarea{
     display: inline-block;
     width: 200px;
     padding: 5px 10px;
@@ -143,6 +140,12 @@ select, input, textarea{
 textarea{
     width: 600px;
     height: 100px;
+}
+
+.note{
+    display: flex;
+    align-items: center;
+
 }
 
 textarea.fld { height: 120px; resize: vertical; }
@@ -162,9 +165,9 @@ textarea.fld { height: 120px; resize: vertical; }
     display: flex;
     justify-content: space-between; 
     align-items: center;           
-    gap: 10px;
+    /* gap: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; */
 }
 
 .button-group a.btn:hover,
@@ -249,6 +252,8 @@ textarea.fld { height: 120px; resize: vertical; }
     outline: none;     
 }
 
+
+
 /* Ẩn spinner cho input số trong bảng */
 #PO-table input[type=number]::-webkit-outer-spin-button,
 #PO-table input[type=number]::-webkit-inner-spin-button {
@@ -271,4 +276,115 @@ textarea.fld { height: 120px; resize: vertical; }
 }
 #createNewBtn{
     background-color: gray;
+}
+
+#saveBtn:hover {
+    background-color: rgb(20, 20, 100); 
+}
+
+#confirmStockBtn:hover {
+    background-color: rgb(0, 120, 180);
+}
+
+#confirmOrderBtn:hover {
+    background-color: rgb(100, 10, 70);
+}
+
+#createNewBtn:hover {
+    background-color: darkslategray;
+}
+
+#addRow,#deleteRow {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 8px 4px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#addRow,#deleteRow  {
+    background-color: #888d89;
+    color: white;
+}
+
+#addRow:hover,#deleteRow:hover {
+    background-color: #191a1a;
+}
+.container {
+    margin-left: 50px;
+    padding: 70px 20px 20px 20px;
+}
+
+#mainForm{
+    margin-bottom: 20px;
+}
+h2{
+    margin-top: 20px;
+}
+
+
+
+@media (max-width: 900px) {
+    .container {
+        margin-left: 0;
+        padding: 60px 10px;
+    }
+
+    label {
+        width: 100px;
+    }
+
+    select, input, textarea {
+        width: 150px;
+    }
+
+    textarea {
+        width: 90%;
+    }
+
+    .sidebar-menu {
+        width: 90px;
+    }
+}
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 70px 10px 20px 10px;
+    }
+
+    label, select, input, textarea {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group button,.button-group a.btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .PO-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #addRow, #deleteRow {
+        width: 48%;
+        margin: 5px 1%;
+    }
+
+    .sidebar-menu {
+        display: none;
+    }
 }

@@ -41,3 +41,12 @@ let orders = [
         ]
     },
 ];
+
+let products = [
+    { item_CD: "001", item_name: "xi măng", stock: 0 },
+    { item_CD: "002", item_name: "đá nhỏ", stock: 0 },
+    { item_CD: "003", item_name: "cát", stock: 0 },
+    { item_CD: "004", item_name: "gạch", stock: 0 },
+    { item_CD: "005", item_name: "mái tôn", stock: 0 },
+    { item_CD: "006", item_name: "dầu máy", stock: 0 }
+];

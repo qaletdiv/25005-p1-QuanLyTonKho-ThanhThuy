@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết đơn hàng</title>
+    <link rel="stylesheet" href="assets/css/order-detail.css">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="assets/css/order-detail.css">
-</head>
+
+    <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
 <body>
     
     <div class="sidebar-wrap">
@@ -15,7 +16,7 @@
             <li><a href="order-detail.html?mode=new"><span>Đơn mua hàng</span></a></li>
             <li><a href="#"><span>Sản phẩm</span></a></li>
             <li><a href="#"><span>Nhà cung cấp</span></a></li>
-            <li><a href="#"><span>Tồn kho</span></a></li>
+            <li><a id="menu-stock" href="#"><span>Tồn kho</span></a></li>
         </ul>
         </div>
     </div>
@@ -72,6 +73,7 @@
                 </div>
             </div>
         </form>
+        <hr>
 
         <h2>Thông tin chi tiết</h2>
         <table class="PO-table" id="PO-table">
@@ -92,9 +94,10 @@
         <button type="button" id="addRow" style="display: none;">Thêm dòng</button>
         <button type="button" id="deleteRow" style="display: none;">Xóa dòng</button>
     </div>
+    <!-- JS Libraries -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
     <script src="assets/data/mock-data.js"></script>
     <script src="assets/js/order-detail.js"></script>
 

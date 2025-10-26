@@ -27,7 +27,23 @@ $(function(){
             createdRow:function(row,rowData,dataIndex){
                 $(row).attr('data-order-no',rowData.orderNo)
             },
-            searching:false
+            searching:false,
+            language: {
+                decimal: "",
+                emptyTable: "Không có dữ liệu trong bảng",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                infoEmpty: "Hiển thị 0 đến 0 của 0 dòng",
+                lengthMenu:"Hiển thị _MENU_ dòng",
+                loadingRecords:"Đang tải...",
+                zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+                paginate: {
+                    first:"Đầu tiên",
+                    last:"Cuối cùng",
+                    next:"Sau",
+                    previous:"Trước"
+                }
+            }
+
         });
         table.on('draw.dt',function(){
             table.column(0,{search:'applied',order:'applied'}).nodes().each(function(cell,i){cell.innerHTML=i+1});
@@ -53,6 +69,12 @@ $(function(){
         render(filtered);
     });
 
+    // ấn nút enter trên bàn phím cũng tìm
+    $("#search-input").on("keypress", function(event){
+        if(event.which === 13) $("#btn-search").click();
+    });
+
+
     $('#PO-table').on('click', 'tbody tr', function () {
         let orderNo = $(this).data('order-no');
         window.location.href = `order-detail.html?orderNo=${orderNo}`;
@@ -72,6 +94,21 @@ $(function(){
 
     $(document).click(function(){
         $(".user-dropdown-content").hide();
+    });
+
+
+    $("#menu-stock").on("click", function (e) {
+        e.preventDefault();
+
+        const products = JSON.parse(localStorage.getItem("products")); // 
+
+        if (!products || products.length === 0) {
+            alert("Tồn kho không có dữ liệu!");
+            return;
+        }
+
+        // Nếu có dữ liệu thì chuyển đến màn hình stock.html
+        window.location.href = "stock.html";
     });
     
 

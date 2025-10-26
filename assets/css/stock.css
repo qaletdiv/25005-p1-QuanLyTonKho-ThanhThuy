@@ -1,27 +1,31 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Toggle button */
 .toggle-btn {
     position: fixed;
     top: 10px;
     left: 20px;
     z-index: 1000;
     padding: 10px 15px;
-    background:green;
+    background: green;
     color: white;
     cursor: pointer;
     border: none;
 }
+
+/* Sidebar */
 .sidebar-wrap {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     z-index: 999;
-    display: none; 
+    display: none;
 }
 
 .sidebar-menu {
@@ -41,16 +45,16 @@
 }
 
 .sidebar-menu ul li a {
-    display: block;             
+    display: block;
     width: 100%;
     color: #ecf0f1;
     text-decoration: none;
     padding: 10px 0;
-    text-align: center;         
+    text-align: center;
 }
 
 .sidebar-menu ul li a span {
-    display: flex;              
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -62,15 +66,15 @@
     height: 12px;
     border: 2px solid white;
     border-radius: 50%;
-    margin-bottom: 5px;          
+    margin-bottom: 5px;
 }
 
-.sidebar-menu ul li a:hover{
+.sidebar-menu ul li a:hover,
+.sidebar-menu ul li a.active {
     background-color: #34495e;
 }
-.sidebar-menu ul li a.active{
-    background-color: #34495e;
-}
+
+/* Topbar */
 .topbar {
     position: fixed;
     left: 0;
@@ -86,8 +90,12 @@
     z-index: 1000;
 }
 
-.user-dropdown { position: relative; }
-.user-btn{
+/* User dropdown */
+.user-dropdown {
+    position: relative;
+}
+
+.user-btn {
     background: none;
     border: none;
     color: #fff;
@@ -95,7 +103,7 @@
     cursor: pointer;
 }
 
-.user-dropdown-content{
+.user-dropdown-content {
     display: none;
     position: absolute;
     right: 0;
@@ -112,13 +120,13 @@
     text-decoration: none;
     color: #333;
 }
-.user-dropdown-content a:hover { background-color: #f1f1f1; }
 
-
-
+.user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 
 .container {
-    margin-left: 50px;
+    margin-left: 120px;
     padding: 70px 20px 20px 20px;
 }
 
@@ -151,53 +159,51 @@ h1 {
     background-color: #2980b9;
 }
 
-.PO-table {
+
+.stock-table-container {
+    overflow-x: auto;
+    width: 100%;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.stock-table {
     display: table; 
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
 }
 
-.PO-table-container {
-    overflow-x: auto;
-    width: 100%;
-}
-
-.PO-table th,.PO-table td {
+.stock-table th,
+.stock-table td {
     border: 1px solid #ddd;
-    padding: 4px 6px;
+    padding: 6px 8px;
     text-align: center !important;
 }
 
-.PO-table th {
-    background-color: #949da2;
+.stock-table th {
+    background-color: #bcbfc1;
     color: #fff;
 }
 
-.PO-table th:first-child,
-.PO-table td:first-child { width: 5px !important; }   
-.PO-table th:nth-child(2),
-.PO-table td:nth-child(2) { width: 70px !important; }  
-.PO-table th:nth-child(3),
-.PO-table td:nth-child(3) { width: 70px !important; }  
-.PO-table th:nth-child(4),
-.PO-table td:nth-child(4) { width: 70px !important; }  
-.PO-table th:nth-child(5),
-.PO-table td:nth-child(5) { width: 80px !important; }   
-.PO-table th:nth-child(6),
-.PO-table td:nth-child(6) { width: 100px !important; }  
-.PO-table th:nth-child(7),
-.PO-table td:nth-child(7) { width: 150px !important; } 
-
-
-
-.PO-table tr:nth-child(even) {
+.stock-table tr:nth-child(even) {
     background-color: #f2efef;
 }
 
-.PO-table tr:hover {
+.stock-table tr:hover {
     background-color: #f1f1f1;
-} 
+}
+.stock-table th:first-child,
+.stock-table td:first-child { width: 1px !important; }   
+.stock-table th:nth-child(2),
+.stock-table td:nth-child(2) { width: 30px !important; }  
+.stock-table th:nth-child(3),
+.stock-table td:nth-child(3) { width: 70px !important; }  
+.stock-table th:nth-child(4),
+.stock-table td:nth-child(4) { width: 70px !important; }  
+
+
 
 @media (max-width: 900px) {
     .container {
@@ -219,7 +225,8 @@ h1 {
         width: 180px;
     }
 
-    .PO-table th,.PO-table td {
+    .stock-table th,
+    .stock-table td {
         font-size: 13px;
         padding: 4px;
     }
@@ -250,17 +257,16 @@ h1 {
         width: 140px;
     }
 
-    .PO-table {
+    .stock-table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
     }
 
-    .PO-table th,.PO-table td {
+    .stock-table th,
+    .stock-table td {
         font-size: 12px;
         padding: 3px;
     }
 }
-#btn-create{
-    background-color: peru;
-}
+
