@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách sản phẩm</title>
     <link rel="stylesheet" href="assets/css/products-list.css">
-</head>
-<body>
-    <button class="toggle-btn">☰ Menu</button>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
 
+    <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+<body>
+    
     <div class="sidebar-wrap">
         <div class="sidebar-menu">
-            <ul>
-                <li><a href="#"><span>Đơn mua hàng</span></a></li>
-                <li><a href="#"><span>Sản phẩm</span></a></li>
-                <li><a href="#"><span>Nhà cung cấp</span></a></li>
-                <li><a id="menu-stock" href="#"><span>Tồn kho</span></a></li>
-            </ul>
+        <ul>
+            <li><a href="order-detail.html?mode=new"><span>Đơn mua hàng</span></a></li>
+            <li><a href="#"><span>Sản phẩm</span></a></li>
+            <li><a href="#"><span>Nhà cung cấp</span></a></li>
+            <li><a id="menu-stock" href="#"><span>Tồn kho</span></a></li>
+        </ul>
         </div>
     </div>
     
     <div class="topbar">
+        <div class = "menu-btn">
+            <button class="toggle-btn">☰ Menu</button>
+        </div>
         <div class="user-dropdown">
             <button class="user-btn">User▼</button>
             <div class="user-dropdown-content">
@@ -36,10 +40,10 @@
         <div class="search">
             <input type="text" placeholder="Nhập mã hoặc tên sản phẩm" id="search-input">
             <button id="btn-search">Tìm kiếm</button>
-            <button id="btn-create">Thêm mới</button>
+            <button id="btn-create">Tạo mới</button>
         </div>
 
-        <table class="product-table">
+        <table class="products-table" id="products-table">
             <thead>
                 <tr>
                     <th>STT</th>
@@ -49,15 +53,17 @@
                     <th>Đơn giá</th>
                 </tr>
             </thead>
-            <tbody id="products-tbody">
+            <tbody>
 
             </tbody>
         </table>
     </div>
 
+    <!-- JS Libraries -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
-    <script src="assets/data/mock-products.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+    
+    <script src="assets/data/mock-data.js"></script>
     <script src="assets/js/products-list.js"></script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="assets/css/product-detail.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+</head>
+<body>
+    <div class="sidebar-wrap">
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="products-list.html"><span>Danh sách sản phẩm</span></a></li>
+                <li><a href="#"><span>Nhà cung cấp</span></a></li>
+                <li><a href="#"><span>Tồn kho</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="topbar">
+        <button class="toggle-btn">☰ Menu</button>
+        <div class="user-dropdown">
+            <button class="user-btn">User▼</button>
+            <div class="user-dropdown-content">
+                <a href="#">Thay đổi mật khẩu</a>
+                <a href="#" id="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Chi tiết sản phẩm</h1>
+
+        <div class="form-group">
+            <label for="item_CD">Mã sản phẩm</label>
+            <input type="text" id="item_CD" placeholder="Nhập mã sản phẩm">
+        </div>
+        <div class="form-group">
+            <label for="item_name">Tên sản phẩm</label>
+            <input type="text" id="item_name" placeholder="Nhập tên sản phẩm">
+        </div>
+        <div class="form-group">
+            <label for="unit">Đơn vị</label>
+            <input type="text" id="unit" placeholder="Nhập đơn vị">
+        </div>
+        <div class="form-group">
+            <label for="price">Đơn giá</label>
+            <input type="number" id="price" placeholder="Nhập đơn giá">
+        </div>
+
+        <button id="saveBtn">Lưu</button>
+        <button id="backBtn">Quay lại</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/data/mock-data.js"></script>
+    <script src="assets/js/product-detail.js"></script>
+</body>
+</html>

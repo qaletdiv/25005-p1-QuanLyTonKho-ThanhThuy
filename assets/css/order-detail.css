@@ -294,7 +294,7 @@ textarea.fld { height: 120px; resize: vertical; }
     background-color: darkslategray;
 }
 
-#addRow,#deleteRow {
+#addRow,#deleteRow,#productSearch {
     display: inline-block;
     padding: 4px 8px;
     margin: 8px 4px;
@@ -305,12 +305,12 @@ textarea.fld { height: 120px; resize: vertical; }
     cursor: pointer;
 }
 
-#addRow,#deleteRow  {
+#addRow,#deleteRow,#productSearch  {
     background-color: #888d89;
     color: white;
 }
 
-#addRow:hover,#deleteRow:hover {
+#addRow:hover,#deleteRow:hover,#productSearch:hover {
     background-color: #191a1a;
 }
 .container {
@@ -325,7 +325,50 @@ h2{
     margin-top: 20px;
 }
 
+.search-table {
+    display: none; 
+    position: fixed; 
+    z-index: 2000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); 
+    width: 700px; 
+    background-color: #fff; 
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 20px;
+}
 
+.search-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.search-table #btn-close-popup {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.search-table #btn-close-popup:hover {
+    background-color: #0056b3;
+}
+.search-table #btn-show-products{
+    background-color: #69e86f;
+    margin-top: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.search-table #btn-show-products:hover{
+    background-color: #2e8633;
+}
 
 @media (max-width: 900px) {
     .container {

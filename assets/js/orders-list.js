@@ -52,7 +52,7 @@ $(function(){
 
     if(!localStorage.getItem("orders")){ 
         localStorage.setItem("orders", JSON.stringify(orders))}; 
-        let ordersData = JSON.parse(localStorage.getItem("orders"));
+    let ordersData = JSON.parse(localStorage.getItem("orders"));
     render(ordersData);
 
     // Nút tạo mới
@@ -100,9 +100,9 @@ $(function(){
     $("#menu-stock").on("click", function (e) {
         e.preventDefault();
 
-        const products = JSON.parse(localStorage.getItem("products")); // 
+        const stockData = JSON.parse(localStorage.getItem("stockData")); // 
 
-        if (!products || products.length === 0) {
+        if (!stockData || stockData.length === 0) {
             alert("Tồn kho không có dữ liệu!");
             return;
         }

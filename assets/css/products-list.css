@@ -10,7 +10,7 @@
     left: 20px;
     z-index: 1000;
     padding: 10px 15px;
-    background: #333;
+    background:green;
     color: white;
     cursor: pointer;
     border: none;
@@ -73,17 +73,17 @@
 }
 .topbar {
     position: fixed;
+    left: 0;
     top: 0;
-    left: 120px; 
     right: 0;
     height: 50px;
     background-color: green;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     color: #fff;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .user-dropdown { position: relative; }
@@ -114,8 +114,11 @@
 }
 .user-dropdown-content a:hover { background-color: #f1f1f1; }
 
+
+
+
 .container {
-    margin-left: 200px;
+    margin-left: 50px;
     padding: 70px 20px 20px 20px;
 }
 
@@ -148,34 +151,46 @@ h1 {
     background-color: #2980b9;
 }
 
-.product-table {
+#products-table {
+    display: table; 
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
-.product-table th:first-child,
-.product-table td:first-child {
-    width: 40px;  
-    text-align: center;
+.PO-tables-container {
+    overflow-x: auto;
+    width: 100%;
 }
 
-.product-table th,
-.product-table td {
+#products-table th,#products-table td {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+    padding: 4px 6px;
+    text-align: center !important;
 }
 
-.product-table th {
+#products-table th {
     background-color: #949da2;
     color: #fff;
 }
 
+#products-table th:first-child,
+#products-table td:first-child { width: 5px !important; }   
+#products-table th:nth-child(2),
+#products-table td:nth-child(2) { width: 70px !important; }  
+#products-table th:nth-child(3),
+#products-table td:nth-child(3) { width: 70px !important; }  
+#products-table th:nth-child(4),
+#products-table td:nth-child(4) { width: 70px !important; }  
+#products-table th:nth-child(5),
+#products-table td:nth-child(5) { width: 80px !important; }   
 
-.PO-table tr:nth-child(even) {
+
+
+#products-table tr:nth-child(even) {
     background-color: #f2efef;
 }
 
-.PO-table tr:hover {
+#products-table tr:hover {
     background-color: #f1f1f1;
 } 

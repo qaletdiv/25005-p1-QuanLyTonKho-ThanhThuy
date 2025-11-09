@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="assets/css/order-detail.css">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
 <body>
@@ -93,9 +94,33 @@
         </table>
         <button type="button" id="addRow" style="display: none;">Thêm dòng</button>
         <button type="button" id="deleteRow" style="display: none;">Xóa dòng</button>
+        <button type="button" id="productSearch">Tìm kiếm SP</button>
     </div>
+
+    <!-- popup tìm kiếm sản phẩm -->
+
+    <div class="search-table" style="display: none;">
+        <h3>Tìm kiếm sản phẩm</h3>
+        <input type="text" id="searchProductInput" placeholder="Nhập tên hoặc mã sản phẩm">
+        <button id="btn-show-products">Hiển thị</button>
+        <table id="searchProductTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Mã SP</th>
+                    <th>Tên SP</th>
+                    <th>Đơn vị</th>
+                    <th>Đơn giá</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="btn-close-popup">Đóng</button>
+    </div>
+
+
     <!-- JS Libraries -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
 
     <script src="assets/data/mock-data.js"></script>

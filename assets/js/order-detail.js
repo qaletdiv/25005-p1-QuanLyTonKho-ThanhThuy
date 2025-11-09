@@ -2,11 +2,13 @@ $(function() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const orderNo = urlParams.get("orderNo"); 
-    const mode = urlParams.get("mode");
+    let mode = urlParams.get("mode");
     const orders = JSON.parse(localStorage.getItem("orders")) || [] ;
-    const order = orders.find(o => o.orderNo === orderNo);
-
+    let order = orders.find(o => o.orderNo === orderNo);
+    // products trong popup ban đầu là mảng trống, bảng trống
+    let products = JSON.parse(localStorage.getItem('products')) || [];
     let table;
+    let searchTable;
 
     // hàm render bảng PO-table
     function render (data,editable){
@@ -47,6 +49,77 @@ $(function() {
             table.column(1,{search:'applied',order:'applied'}).nodes().each(function(cell,i){cell.innerHTML=i+1});
         });
     }
+
+     // lưu lại vị trí dòng mà user đang chỉnh sửa trong bảng order
+    let currentEditingRow =null;
+    $('#PO-table tbody').on('click','tr',function(){
+        currentEditingRow=$(this).closest('tr');
+    });
+
+
+    searchTable = $('#searchProductTable').DataTable({
+            data:[],
+            columns:[
+                {data:null,title:'STT',render:function(data,type,row,meta){ return meta.row + 1;}},
+                {data:'item_name',title:'Tên sản phẩm'},
+                {data:'unit',title:'Đơn vị'},
+                {data:'price',title:'Đơn giá'}
+            ],
+            language: {
+                decimal: "",
+                emptyTable: "Không có dữ liệu trong bảng",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                infoEmpty: "Hiển thị 0 đến 0 của 0 dòng",
+                lengthMenu: "Hiển thị _MENU_ dòng",
+                loadingRecords:"Đang tải...",
+                zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+                paginate: {
+                    first:"Đầu tiên",
+                    last:"Cuối cùng",
+                    next:"Sau",
+                    previous:"Trước"
+                }
+            },
+            searching:false,
+            info:false,
+            paging:true
+        });
+
+    $('#productSearch').on('click',function(){
+        if(!currentEditingRow)return;
+        $('#searchProductInput').val("");
+        searchTable.clear().draw();
+        $('.search-table').fadeIn();
+    });
+
+    $('#btn-close-popup').on('click',function(){
+        $('.search-table').fadeOut();
+    });
+
+    // khi user an nut hien thi ket qua trong popup
+    $('#btn-show-products').on('click',function(){
+        let keyword = $('#searchProductInput').val().trim().toLowerCase();
+        let searchedData=(keyword==="")
+            ?products
+            :products.filter(p=>
+                p.item_CD.toLowerCase().includes(keyword)||
+                p.item_name.toLowerCase().includes(keyword)
+        );
+        searchTable.clear().rows.add(searchedData).draw();
+        
+    });
+
+    // chọn sản phẩm trong popup xong thì tự động hiển thị trong bảng chi tiết
+    $('#searchProductTable').on('dblclick','tbody tr',function(){
+        let data = searchTable.row(this).data();
+        if(!currentEditingRow)return;
+        currentEditingRow.find('.item_CD').val(data.item_CD);
+        currentEditingRow.find('.item_name').val(data.item_name);
+        currentEditingRow.find('.price').val(data.price);
+        $('.search-table').fadeOut();
+    })
+
+
 
     // Hàm cập nhật lại tổng tiền
     function updateTotalAmount() {
@@ -111,6 +184,29 @@ $(function() {
         }
     }
         
+
+    // user ấn nút tạo mới trong trang để tạo thêm đơn hàng mới mà ko cần ấn menu
+    $('#createNewBtn').on('click', function() {
+        $('#vendor').val('');
+        order = null;
+        mode = "new";
+        $('#PO-person').val('');
+        $('#PO-date').val('');
+        $("input[name='net1']").val('');
+        $("textarea[name='note1']").val('');
+
+        const blankRows = [
+        { item_CD: '', item_name: '', quantity: '', price: '' },
+        { item_CD: '', item_name: '', quantity: '', price: '' },
+        { item_CD: '', item_name: '', quantity: '', price: '' }
+        ];
+
+        render(blankRows,true);
+        $('#addRow,#deleteRow,#saveBtn,#confirmBtn').show();
+        const newUrl = window.location.pathname + "?mode=new";
+        window.history.replaceState({}, '', newUrl);
+    });
+    
     
   // ấn nút mở trang tại sidemenu thì mở màn hình có sẵn bảng ở dạng tạo mới để user nhập liệu
     if(mode === "new"){
@@ -130,23 +226,7 @@ $(function() {
         $('#addRow,#deleteRow,#saveBtn,#confirmBtn').show();
     }
 
-    // user ấn nút tạo mới trong trang để tạo thêm đơn hàng mới mà ko cần ấn menu
-    $('#createNewBtn').on('click', function() {
-        $('#vendor').val('');
-        $('#PO-person').val('');
-        $('#PO-date').val('');
-        $("input[name='net1']").val('');
-        $("textarea[name='note1']").val('');
-
-        const blankRows = [
-        { item_CD: '', item_name: '', quantity: '', price: '' },
-        { item_CD: '', item_name: '', quantity: '', price: '' },
-        { item_CD: '', item_name: '', quantity: '', price: '' }
-        ];
-
-        render(blankRows,true);
-        $('#addRow,#deleteRow,#saveBtn,#confirmBtn').show();
-    });
+    
 
     // bản nháp, user chỉnh sửa ô input
     $("#PO-table").on('input','.edit-input',function(){
@@ -209,7 +289,7 @@ $(function() {
         let currentOrder;
 
         // khi trong URL ko có orderNo,order dc tao mới
-        if(!order){
+        if(!order || mode ==="new"){
             let maxOrderNo = 0;
             orders.forEach(o =>{
                 let number = parseInt(o.orderNo,10);
@@ -330,17 +410,17 @@ $(function() {
     $('#confirmStockBtn').on('click',function(){
         updateOrderData();
         // lấy stockData từ localStorage
-        let products = JSON.parse(localStorage.getItem("products")) || [];
+        let stockData = JSON.parse(localStorage.getItem("stockData")) || [];
         order.orderProducts.forEach(p =>{
-            let prod=products.find(x=>x.item_CD === p.item_CD);
+            let prod=stockData.find(x=>x.item_CD === p.item_CD);
             if(prod){
                 prod.stock +=parseFloat(p.quantity) || 0;
             }else{
-                products.push({item_CD:p.item_CD,item_name:p.item_name,stock:parseFloat(p.quantity || 0)})
+                stockData.push({item_CD:p.item_CD,item_name:p.item_name,stock:parseFloat(p.quantity || 0)})
             }
         });
 
-        localStorage.setItem("products",JSON.stringify(products));
+        localStorage.setItem("stockData",JSON.stringify(stockData));
 
         order.status="Đã nhập kho";
         let orders = JSON.parse(localStorage.getItem("orders")) || [];
