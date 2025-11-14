@@ -5,8 +5,8 @@ $(function() {
     let mode = urlParams.get("mode");
     const orders = JSON.parse(localStorage.getItem("orders")) || [] ;
     let order = orders.find(o => o.orderNo === orderNo);
-    // products trong popup ban đầu là mảng trống, bảng trống
-    let products = JSON.parse(localStorage.getItem('products')) || [];
+    // products
+    
     let table;
     let searchTable;
 
@@ -98,10 +98,14 @@ $(function() {
 
     // khi user an nut hien thi ket qua trong popup
     $('#btn-show-products').on('click',function(){
+        if(!localStorage.getItem("products")) {
+            localStorage.setItem("products", JSON.stringify(products));}
+        const productsData = JSON.parse(localStorage.getItem("products"));
+        
         let keyword = $('#searchProductInput').val().trim().toLowerCase();
         let searchedData=(keyword==="")
-            ?products
-            :products.filter(p=>
+            ?productsData
+            :productsData.filter(p=>
                 p.item_CD.toLowerCase().includes(keyword)||
                 p.item_name.toLowerCase().includes(keyword)
         );
@@ -454,6 +458,30 @@ $(function() {
 
     $(document).click(function(){
         $(".user-dropdown-content").hide();
+    });
+
+    $("#menu-stock").on("click", function (e) {
+        e.preventDefault();
+        if(!localStorage.getItem("stockData")){
+            localStorage.setItem("stockData",JSON.stringify(stockData));
+        }
+
+        const stock = JSON.parse(localStorage.getItem("stockData")); 
+
+        if (!stock || stock.length === 0) {
+            alert("Tồn kho không có dữ liệu!");
+            return;
+        }
+
+        // Nếu có dữ liệu thì chuyển đến màn hình stock.html
+        window.location.href = "stock.html";
+    });
+    
+    $('#products-list').on('click',function(){
+        window.location.href = "products-list.html";
+    });
+    $('#product-detail').on('click',function(){
+        window.location.href = "product-detail.html";
     });
 
 

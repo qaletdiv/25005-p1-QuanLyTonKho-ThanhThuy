@@ -1,4 +1,6 @@
 $(function(){
+    if(!localStorage.getItem("products")) {
+        localStorage.setItem("products", JSON.stringify(products));}
     let table;
     function render (data){
         if ($.fn.DataTable.isDataTable('#PO-table')) {
@@ -99,16 +101,26 @@ $(function(){
 
     $("#menu-stock").on("click", function (e) {
         e.preventDefault();
+        if(!localStorage.getItem("stockData")){
+            localStorage.setItem("stockData",JSON.stringify(stockData));
+        }
 
-        const stockData = JSON.parse(localStorage.getItem("stockData")); // 
+        const stock = JSON.parse(localStorage.getItem("stockData")); 
 
-        if (!stockData || stockData.length === 0) {
+        if (!stock || stock.length === 0) {
             alert("Tồn kho không có dữ liệu!");
             return;
         }
 
         // Nếu có dữ liệu thì chuyển đến màn hình stock.html
         window.location.href = "stock.html";
+    });
+    
+    $('#products-list').on('click',function(){
+        window.location.href = "products-list.html";
+    });
+    $('#product-detail').on('click',function(){
+        window.location.href = "product-detail.html";
     });
     
 

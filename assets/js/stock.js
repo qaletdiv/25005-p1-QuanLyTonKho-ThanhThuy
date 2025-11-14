@@ -85,4 +85,28 @@ $(function(){
         e.preventDefault();
         window.location.href = "order-detail.html?mode=new";
     });
+
+    $("#menu-stock").on("click", function (e) {
+        e.preventDefault();
+        if(!localStorage.getItem("stockData")){
+            localStorage.setItem("stockData",JSON.stringify(stockData));
+        }
+
+        const stock = JSON.parse(localStorage.getItem("stockData")); 
+
+        if (!stock || stock.length === 0) {
+            alert("Tồn kho không có dữ liệu!");
+            return;
+        }
+
+        // Nếu có dữ liệu thì chuyển đến màn hình stock.html
+        window.location.href = "stock.html";
+    });
+    
+    $('#products-list').on('click',function(){
+        window.location.href = "products-list.html";
+    });
+    $('#product-detail').on('click',function(){
+        window.location.href = "product-detail.html";
+    });
 });

@@ -106,3 +106,42 @@ button:hover {
 .sidebar-menu ul {list-style:none;padding:0;}
 .sidebar-menu ul li a {display:block;color:#fff;text-align:center;padding:10px 0;text-decoration:none;}
 .sidebar-menu ul li a:hover {background-color:#34495e;}
+
+@media (max-width: 900px) {
+    .container {
+        margin-left: 20px;
+        padding: 60px 15px 20px 15px;
+    }
+
+    .form-group input {
+        width: 250px;
+    }
+
+    .sidebar-menu {
+        width: 100px;
+    }
+}
+@media (max-width: 600px) {
+    .container {
+        margin-left: 0;
+        padding: 60px 10px 20px 10px;
+    }
+
+    .form-group input {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .sidebar-menu {
+        width: 80px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
