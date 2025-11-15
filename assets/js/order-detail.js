@@ -138,12 +138,21 @@ $(function() {
 
     // hàm cập nhật lại orderproducts mỗi khi user chỉnh sửa thêm xóa dòng
     function updateOrderData (){
-        const updatedProducts = table.rows().data().toArray();
-        if(order){
-            order.orderProducts = updatedProducts;
-            order.totalAmount = parseFloat($("input[name='net1']").val().replace(/,/g, '')) || 0;
-        }
+    let updatedProducts = [];
+    $('#PO-table tbody tr').each(function () {
+        updatedProducts.push({
+            item_CD: $(this).find('.item_CD').val() || "",
+            item_name: $(this).find('.item_name').val() || "",
+            quantity: parseFloat($(this).find('.quantity').val()) || 0,
+            price: parseFloat($(this).find('.price').val()) || 0
+        });
+    });
+
+    if(order){
+        order.orderProducts = updatedProducts;
+        order.totalAmount = parseFloat($("input[name='net1']").val().replace(/,/g, '')) || 0;
     }
+}
 
     // hàm kiểm tra ít nhất có 1 dòng trong bảng sản phẩm
     function hasOrderProducts (){
@@ -234,22 +243,16 @@ $(function() {
 
     // bản nháp, user chỉnh sửa ô input
     $("#PO-table").on('input','.edit-input',function(){
-        let row = table.row($(this).closest('tr')).data();
-        let className = $(this).attr('class').split(' ')[1];
-        let value = $(this).val();
-        if(className==='quantity' || className==='price'){
-            value = parseFloat(value) || 0;
-        }
-        row[className] = parseFloat(value);
+        let $tr = $(this).closest('tr');
+        let quantity = parseFloat($tr.find('.quantity').val()) || 0;
+        let price = parseFloat($tr.find('.price').val()) || 0;
 
-        // cập nhật lại giá từng dòng khi user thay đổi SL hoặc đơn giá
-        let quantity = parseFloat(row.quantity) || 0;
-        let price = parseFloat(row.price) || 0;
+    // tính lại thành tiền của dòng
         let rowTotal = quantity * price;
-        $(this).closest('tr').find('td').eq(6).text(rowTotal.toLocaleString());
+        $tr.find('td').eq(6).text(rowTotal.toLocaleString());
 
 
-        // cap nhat lai tong tien khi user thay doi SL hoac don gia
+    // cap nhat lai tong tien khi user thay doi SL hoac don gia
         updateTotalAmount();
         updateOrderData();
     });
