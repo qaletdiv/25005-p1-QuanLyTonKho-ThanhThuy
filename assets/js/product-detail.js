@@ -92,4 +92,10 @@ $(function(){
         window.location.href = "product-detail.html";
     });
 
+    //logout
+    $("#logout").click(function (e) {
+        e.preventDefault();   
+        window.location.href = "login.html"; 
+    });
+
 });
