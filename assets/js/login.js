@@ -13,6 +13,7 @@ $(function(){
             return;
         }
         if(userId===account.userId && userPassword===account.userPassword){
+            localStorage.setItem("isLogined","true");
             window.location.href="orders-list.html"
         }else{
             alert("userId hoặc password không đúng");

@@ -1,4 +1,8 @@
 $(function() {
+    if(localStorage.getItem("isLogined") !== "true"){
+        window.location.href = "login.html";
+        return;
+    }
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const orderNo = urlParams.get("orderNo"); 

@@ -371,6 +371,15 @@ h2{
 }
 
 @media (max-width: 900px) {
+    .button-group{
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:8px
+    }
+    .button-group a.btn,
+    .button-group button {
+        width: 50%;          
+    }
     .container {
         margin-left: 0;
         padding: 60px 10px;
@@ -393,6 +402,15 @@ h2{
     }
 }
 @media (max-width: 600px) {
+    .button-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group a.btn,
+    .button-group button {
+        width: 100%;             
+    }
     body {
         font-size: 14px;
     }

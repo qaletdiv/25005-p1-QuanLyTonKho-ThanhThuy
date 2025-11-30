@@ -1,4 +1,8 @@
 $(function(){
+    if(localStorage.getItem("isLogined") !== "true"){
+        window.location.href = "login.html";
+        return;
+    }
     if(!localStorage.getItem("products")) {
         localStorage.setItem("products", JSON.stringify(products));}
     let table;

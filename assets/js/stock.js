@@ -1,4 +1,8 @@
 $(function(){
+    if(localStorage.getItem("isLogined") !== "true"){
+        window.location.href = "login.html";
+        return;
+    }
     let table;
 // hàm render bảng stock
     function renderStock(data){

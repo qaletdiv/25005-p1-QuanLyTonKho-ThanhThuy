@@ -1,4 +1,8 @@
 $(function(){
+    if(localStorage.getItem("isLogined") !== "true"){
+        window.location.href = "login.html";
+        return;
+    }
     let table;
 
     // Hàm render bảng sản phẩm

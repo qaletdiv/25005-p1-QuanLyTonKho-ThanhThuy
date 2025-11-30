@@ -156,6 +156,7 @@ h1 {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+    overflow-x: auto;
 }
 
 .PO-tables-container {
@@ -238,7 +239,7 @@ h1 {
     .search button {
         padding: 5px 10px;
     }
-    .PO-tables-container {
+    .products-table {
         overflow-x: auto;
     }
 
