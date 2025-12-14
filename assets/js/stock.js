@@ -48,8 +48,8 @@ $(function(){
     // Lấy dữ liệu từ localStorage
     if(!localStorage.getItem("stockData")){ 
         localStorage.setItem("stockData", JSON.stringify(stockData))}; 
-    let stock_data = JSON.parse(localStorage.getItem("stockData"));
-    if(stock_data.length === 0){
+    let stockData = JSON.parse(localStorage.getItem("stockData"));
+    if(stockData.length === 0){
         alert("Tồn kho không có dữ liệu!");
     }
     renderStock(stockData);

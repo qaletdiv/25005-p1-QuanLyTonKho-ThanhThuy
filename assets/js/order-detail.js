@@ -418,33 +418,49 @@ $(function() {
     });
 
 // xử lý khi ấn nút đã nhập kho
-    $('#confirmStockBtn').on('click',function(){
-        updateOrderData();
-        // lấy stockData từ localStorage
-        let stockData = JSON.parse(localStorage.getItem("stockData")) || [];
-        order.orderProducts.forEach(p =>{
-            let prod=stockData.find(x=>x.item_CD === p.item_CD);
-            if(prod){
-                prod.stock +=parseFloat(p.quantity) || 0;
-            }else{
-                stockData.push({item_CD:p.item_CD,item_name:p.item_name,stock:parseFloat(p.quantity || 0)})
-            }
-        });
+    $('#confirmStockBtn').on('click', function () {
 
-        localStorage.setItem("stockData",JSON.stringify(stockData));
+    // LẤY DỮ LIỆU TỪ BẢNG
+    const products = table.rows().data().toArray();
 
-        order.status="Đã nhập kho";
-        let orders = JSON.parse(localStorage.getItem("orders")) || [];
-        let index = orders.findIndex(o => o.orderNo === order.orderNo);
-        if(index !== -1) orders[index] = order;
-        localStorage.setItem("orders", JSON.stringify(orders));
+    if (!products || products.length === 0) {
+        alert("Không có sản phẩm để nhập kho");
+        return;
+    }
 
-        alert(`Đơn hàng ${order.orderNo} đã được nhập kho.`);
-        $('#PO-table input').prop('disabled', true);
-        $('#addRow, #deleteRow, #saveBtn, #confirmStockBtn').hide();
+    let stockData = JSON.parse(localStorage.getItem("stockData")) || [];
 
+    products.forEach(p => {
+        if (!p.item_CD || p.quantity <= 0) return; 
+        let prod = stockData.find(x => x.item_CD === p.item_CD);
 
+        if (prod) {
+            prod.stock += Number(p.quantity);
+        } else {
+            stockData.push({
+                item_CD: p.item_CD,
+                item_name: p.item_name,
+                stock: Number(p.quantity)
+            });
+        }
     });
+
+    localStorage.setItem("stockData", JSON.stringify(stockData));
+
+    // cập nhật trạng thái đơn
+    order.status = "Đã nhập kho";
+
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    let index = orders.findIndex(o => o.orderNo === order.orderNo);
+    if (index !== -1) orders[index] = order;
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    alert(`Đơn hàng ${order.orderNo} đã được nhập kho`);
+
+    $('#PO-table input').prop('disabled', true);
+    $('#addRow, #deleteRow, #saveBtn, #confirmStockBtn').hide();
+});
     
 
     // nút ẩn hiện menu js
