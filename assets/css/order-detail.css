@@ -388,6 +388,13 @@ h2{
     background-color: #2e8633;
 }
 
+.readonly-input {
+    background-color: #eaf8ec;
+    cursor: not-allowed;
+}
+
+
+
 @media (max-width: 900px) {
     .button-group{
         flex-wrap:wrap;
