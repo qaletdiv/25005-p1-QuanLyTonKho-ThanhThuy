@@ -108,10 +108,18 @@ $(function(){
         window.location.href = "product-detail.html";
     });
 
-    //logout
+     //logout
     $("#logout").click(function (e) {
         e.preventDefault();   
+        localStorage.setItem('isLogined','false');
         window.location.href = "login.html"; 
     });
+    
+
+    // Toggle sidebar
+    $(".toggle-btn").click(function(){
+        $(".sidebar-wrap").slideToggle(300);
+    });
+    
 
 });

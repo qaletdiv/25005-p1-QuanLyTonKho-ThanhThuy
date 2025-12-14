@@ -88,7 +88,8 @@ $(function(){
 
     // nút ẩn hiện menu js
     $(".toggle-btn").click(function(){
-        $(".sidebar-wrap").slideToggle(300); 
+        // $(".sidebar-wrap").toggleClass("show");
+        $(".sidebar-wrap").slideToggle(300);
     });
 
 
@@ -130,6 +131,7 @@ $(function(){
     //logout
     $("#logout").click(function (e) {
         e.preventDefault();   
+        localStorage.setItem('isLogined','false');
         window.location.href = "login.html"; 
     });
     

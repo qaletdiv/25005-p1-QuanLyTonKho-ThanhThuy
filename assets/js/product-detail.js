@@ -99,7 +99,8 @@ $(function(){
     //logout
     $("#logout").click(function (e) {
         e.preventDefault();   
+        localStorage.setItem('isLogined','false');
         window.location.href = "login.html"; 
     });
-
+    
 });

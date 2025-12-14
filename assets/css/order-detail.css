@@ -1,37 +1,36 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-body {
-    background: #f8f9f9;
-}
 
+/* Toggle button */
 .toggle-btn {
     position: fixed;
-    top: 10px;
-    left: 20px;
+    top: 60px;
+    left: 0;
     z-index: 1000;
     padding: 10px 15px;
-    background:green;
+    background: green;
     color: white;
     cursor: pointer;
     border: none;
 }
 
+/* Sidebar */
 .sidebar-wrap {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     z-index: 999;
-    display: none; 
+    display: none;
 }
 
 .sidebar-menu {
     position: fixed;
-    top: 0;
+    top: 30px;
     left: 0;
     width: 120px;
     height: 100%;
@@ -46,16 +45,16 @@ body {
 }
 
 .sidebar-menu ul li a {
-    display: block;             
+    display: block;
     width: 100%;
     color: #ecf0f1;
     text-decoration: none;
     padding: 10px 0;
-    text-align: center;          
+    text-align: center;
 }
 
 .sidebar-menu ul li a span {
-    display: flex;              
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -67,22 +66,30 @@ body {
     height: 12px;
     border: 2px solid white;
     border-radius: 50%;
-    margin-bottom: 5px;          
+    margin-bottom: 5px;
 }
 
-.sidebar-menu ul li a:hover{
+.sidebar-menu ul li a:hover,
+.sidebar-menu ul li a.active {
     background-color: #34495e;
 }
-.sidebar-menu ul li a.active{
-    background-color: #34495e;
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
+.logo img{
+    margin-top: 10px;
+    height: 50px;
+}
+/* Topbar */
 .topbar {
     position: fixed;
     left: 0;
     top: 0;
     right: 0;
-    height: 50px;
+    height: 100px;
     background-color: green;
     display: flex;
     justify-content: space-between;
@@ -92,16 +99,20 @@ body {
     z-index: 1000;
 }
 
+/* User dropdown */
+.user-dropdown {
+    position: relative;
+}
 
-.user-dropdown { position: relative; }
-.user-btn{
+.user-btn {
     background: none;
     border: none;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
 }
-.user-dropdown-content{
+
+.user-dropdown-content {
     display: none;
     position: absolute;
     right: 0;
@@ -111,13 +122,20 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 200;
 }
+
 .user-dropdown-content a {
     display: block;
     padding: 10px 15px;
     text-decoration: none;
     color: #333;
 }
-.user-dropdown-content a:hover { background-color: #f1f1f1; }
+
+.user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+
+
 
 #mainForm label{ 
     font-weight: bold; 
@@ -315,7 +333,7 @@ textarea.fld { height: 120px; resize: vertical; }
 }
 .container {
     margin-left: 50px;
-    padding: 70px 20px 20px 20px;
+    padding: 100px 20px 20px 20px;
 }
 
 #mainForm{
