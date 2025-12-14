@@ -84,6 +84,11 @@ $(function(){
         window.location.href = `product-detail.html?productCode=${productCode}`;
     });
 
+    // nút tạo mới
+    $("#btn-create").on("click", function () {
+    window.location.href = "product-detail.html";
+    });
+
     $("#menu-stock").on("click", function (e) {
         e.preventDefault();
         if(!localStorage.getItem("stockData")){
