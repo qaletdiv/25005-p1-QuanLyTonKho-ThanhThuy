@@ -127,7 +127,12 @@ $(function() {
         $('.search-table').fadeOut();
     })
 
-
+    // hàm tính lại tổng tiền
+    function calculateTotalAmount(displayProducts) {
+        return displayProducts.reduce((sum, p) => {
+        return sum + (p.quantity * p.price);
+        }, 0);
+    }
 
     // Hàm cập nhật lại tổng tiền
     function updateTotalAmount() {
@@ -142,13 +147,13 @@ $(function() {
 
     // hàm cập nhật lại orderproducts mỗi khi user chỉnh sửa thêm xóa dòng
     function updateOrderData (){
-    let updatedProducts = [];
-    $('#PO-table tbody tr').each(function () {
-        updatedProducts.push({
+        let updatedProducts = [];
+        $('#PO-table tbody tr').each(function () {
+            updatedProducts.push({
             item_CD: $(this).find('.item_CD').val() || "",
-            item_name: $(this).find('.item_name').val() || "",
+            // item_name: $(this).find('.item_name').val() || "",
             quantity: parseFloat($(this).find('.quantity').val()) || 0,
-            price: parseFloat($(this).find('.price').val()) || 0
+            // price: parseFloat($(this).find('.price').val()) || 0
         });
     });
 
@@ -156,7 +161,38 @@ $(function() {
         order.orderProducts = updatedProducts;
         order.totalAmount = parseFloat($("input[name='net1']").val().replace(/,/g, '')) || 0;
     }
-}
+    }
+
+    // hàm lấy thông tin sp từ bảng từ DOM
+    function getOrderProductsFromTable() {
+        const products = [];
+
+        $('#PO-table tbody tr').each(function () {
+            const item_CD = $(this).find('.item_CD').val()?.trim();
+            const quantity = parseFloat($(this).find('.quantity').val()) || 0;
+            if (!item_CD) return; 
+            products.push({
+                item_CD,
+                quantity,
+            });
+        });
+
+        return products;
+    }
+
+    // hàm lấy thông tin mới nhất từ master sp
+    function getProductInfo(orderProducts){
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+        return orderProducts.map(o => {
+            const sp = products.find(p => p.item_CD === o.item_CD);
+            return {
+                item_CD:o.item_CD,
+                item_name:sp?sp.item_name:"",
+                quantity:o.quantity || 0,
+                price:sp?sp.price:0
+            }
+        });
+    }
 
     // hàm kiểm tra ít nhất có 1 dòng trong bảng sản phẩm
     function hasOrderProducts (){
@@ -183,7 +219,10 @@ $(function() {
         
         // nếu trạng thái là bản nháp thì thêm html input và chỉnh sửa dc, và hiển thị 3 nút thêm xóa dòng và nút lưu lại
         if(order.status==="Bản nháp"){
-            render(order.orderProducts,true);
+            const displayProducts = getProductInfo(order.orderProducts);
+            render(displayProducts,true);
+            const total = calculateTotalAmount(displayProducts);
+            $("input[name='net1']").val(total.toLocaleString());
             $('#addRow,#deleteRow,#saveBtn,#confirmOrderBtn').show();
             $('#confirmStockBtn').hide();
         }else{
@@ -337,7 +376,7 @@ $(function() {
                 handler: handler,
                 totalAmount:parseFloat($("input[name='net1']").val().replace(/,/g,'')) || 0,
                 status:"Bản nháp",
-                orderProducts:table.rows().data().toArray()
+                orderProducts:getOrderProductsFromTable()
             };
             
             orders.push(currentOrder);
