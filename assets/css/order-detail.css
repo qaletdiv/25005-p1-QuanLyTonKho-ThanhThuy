@@ -89,7 +89,7 @@
     left: 0;
     top: 0;
     right: 0;
-    height: 100px;
+    height: 70px;
     background-color: green;
     display: flex;
     justify-content: space-between;
@@ -473,4 +473,25 @@ h2{
     .sidebar-menu {
         display: none;
     }
+}
+
+
+.buttons-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+      
+}
+.buttons-group{
+    margin-left: 255px;
+}
+.buttons-group a{
+    text-decoration: none;
+    color: rgb(4, 214, 251);
+}
+.logo a {
+    text-decoration: none;
+    color: #eaf8ec;
+    font-size: 50px;
 }

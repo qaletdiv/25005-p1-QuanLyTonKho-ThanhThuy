@@ -113,6 +113,11 @@ $(function(){
         window.location.href = "product-detail.html";
     });
 
+    $(".user-btn").click(function(event){
+        event.stopPropagation();
+        $(".user-dropdown-content").toggle();
+    });
+
      //logout
     $("#logout").click(function (e) {
         e.preventDefault();   
