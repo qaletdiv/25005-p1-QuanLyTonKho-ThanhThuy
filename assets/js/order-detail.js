@@ -92,7 +92,8 @@ $(function() {
     $('#productSearch').on('click',function(){
         if(!currentEditingRow)return;
         $('#searchProductInput').val("");
-        searchTable.clear().draw();
+        const productsData = JSON.parse(localStorage.getItem("products")) || [];
+        searchTable.clear().rows.add(productsData).draw();
         $('.search-table').fadeIn();
     });
 
@@ -218,6 +219,7 @@ $(function() {
         $("input[name='net1']").val(order.totalAmount);
         
         // nếu trạng thái là bản nháp thì thêm html input và chỉnh sửa dc, và hiển thị 3 nút thêm xóa dòng và nút lưu lại
+        
         if(order.status==="Bản nháp"){
             const displayProducts = getProductInfo(order.orderProducts);
             render(displayProducts,true);
@@ -225,18 +227,14 @@ $(function() {
             $("input[name='net1']").val(total.toLocaleString());
             $('#addRow,#deleteRow,#saveBtn,#confirmOrderBtn').show();
             $('#confirmStockBtn').hide();
-        }else{
-            render(order.orderProducts,false);
-            $('#confirmBtn').hide();
-            lockInputs();
-        }
-        if(order.status==="Đã nhập kho"){
-            render(order.orderProducts,false);
-            $('#addRow,#deleteRow,#saveBtn,#confirmOrderBtn,#confirmStockBtn').hide();
-        }
-        if(order.status==="Đã xác nhận"){
+        }else if(order.status==="Đã xác nhận") {
             render(order.orderProducts,false);
             $('#addRow,#deleteRow,#saveBtn,#confirmOrderBtn').hide();
+            lockInputs();
+        }else if(order.status==="Đã nhập kho"){
+            render(order.orderProducts,false);
+            $('#addRow,#deleteRow,#saveBtn,#confirmOrderBtn,#confirmStockBtn').hide();
+            lockInputs();
         }
     }
         
@@ -439,6 +437,14 @@ $(function() {
         orders.push(currentOrder);
     }
 
+    // CHỐT dữ liệu sản phẩm , ko lấy lại từ master nữa
+    currentOrder.orderProducts = table.rows().data().toArray().map(p => ({
+        item_CD: p.item_CD,
+        item_name: p.item_name,
+        quantity: p.quantity,
+        price: p.price
+    }));
+
         // đổi trạng thái thành “Đã xác nhận”
         currentOrder.status = "Đã xác nhận";
 
@@ -485,6 +491,13 @@ $(function() {
     });
 
     localStorage.setItem("stockData", JSON.stringify(stockData));
+    // CHỐT dữ liệu sản phẩm ,ko lấy lại từ master nữa
+    order.orderProducts = table.rows().data().toArray().map(p => ({
+        item_CD: p.item_CD,
+        item_name: p.item_name,
+        quantity: p.quantity,
+        price: p.price
+    }));
 
     // cập nhật trạng thái đơn
     order.status = "Đã nhập kho";

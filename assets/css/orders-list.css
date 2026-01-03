@@ -295,8 +295,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 50%;
-      
+    width: 50%;   
 }
 .buttons-group{
     margin-left: 255px;
@@ -306,7 +305,33 @@ h1 {
     color: rgb(4, 214, 251);
 }
 .logo a {
+    display: flex;
+    margin-top: 15px;
     text-decoration: none;
     color: #eaf8ec;
-    font-size: 50px;
+    font-size: 40px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:green;
+}
+
+ul li {
+    float: left;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    background-color: rgb(12, 74, 12);
 }
