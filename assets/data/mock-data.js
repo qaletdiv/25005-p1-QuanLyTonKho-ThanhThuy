@@ -43,12 +43,12 @@ let orders = [
 ];
 
 let stockData = [
-    { item_CD: "001", item_name: "xi măng", stock: 1 },
-    { item_CD: "002", item_name: "đá nhỏ", stock: 2 },
-    { item_CD: "003", item_name: "cát", stock: 3 },
-    { item_CD: "004", item_name: "gạch", stock: 4 },
-    { item_CD: "005", item_name: "mái tôn", stock: 5 },
-    { item_CD: "006", item_name: "dầu máy", stock: 6 }
+    { item_CD: "001",stock: 1 },
+    { item_CD: "002",stock: 2 },
+    { item_CD: "003",stock: 3 },
+    { item_CD: "004",stock: 4 },
+    { item_CD: "005",stock: 5 },
+    { item_CD: "006",stock: 6 }
 ];
 
 let products = [

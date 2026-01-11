@@ -44,15 +44,27 @@ $(function(){
             });
         });
     }
-
-    // Lấy dữ liệu từ localStorage
-    if(!localStorage.getItem("stockData")){ 
-        localStorage.setItem("stockData", JSON.stringify(stockData))}; 
-    let stockData = JSON.parse(localStorage.getItem("stockData"));
+    // lấy thông tin sp mới nhất
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    // lấy số lượng tồn kho
+    const stockData = JSON.parse(localStorage.getItem("stockData")) || [];
     if(stockData.length === 0){
         alert("Tồn kho không có dữ liệu!");
     }
-    renderStock(stockData);
+
+    //hàm gộp thông tin sp và stock
+    function mergeStockInfo(products,stockData){
+        return stockData.map(s => {
+            const product = products.find(p => p.item_CD === s.item_CD)
+            return {
+                item_CD:s.item_CD,
+                item_name:product.item_name,
+                stock:s.stock
+            };
+        });
+    }
+    let stockInfo = mergeStockInfo(products,stockData);
+    renderStock(stockInfo);
 
     // nút tìm kiếm
     $("#btn-search").on("click", function(){
